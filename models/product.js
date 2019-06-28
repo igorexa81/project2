@@ -3,7 +3,13 @@ module.exports = function(sequelize, DataTypes) {
     productDepartment: DataTypes.STRING,
     productCategory: DataTypes.STRING,
     productName: DataTypes.STRING,
-    id: DataTypes.STRING
+    id: {
+      type: DataTypes.INTEGER,
+      unique: true,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+      }
   });
   return Product;
 };
