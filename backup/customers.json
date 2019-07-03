@@ -1,0 +1,8 @@
+[{"name":"Igor", "PASSWORD":"123den", "cust_id":4},
+ {"name":"Igor_5", "PASSWORD":"Auror_Den", "cust_id":5},
+ {"name":"DVP", "PASSWORD":"PASS", "cust_id":35},
+ {"name":"John Doe", "PASSWORD":"something", "cust_id":99},
+ {"name":"AVB", "PASSWORD":"PASS2", "cust_id":1009},
+ {"name":"AyeBhat", "PASSWORD":"PASS2", "cust_id":1010},
+ {"name":"Jane Doe", "PASSWORD":"Jane_PASS", "cust_id":2000},
+ {"name":"Irina Bka", "PASSWORD":"IRS_JS", "cust_id":6000}]
