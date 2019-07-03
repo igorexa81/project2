@@ -6,6 +6,7 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+const path = require('path');
 
 // Sets up the Express App
 // =============================================================
@@ -23,7 +24,8 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // Static directory
 app.use(express.static("public"));
-
+const publicPath = path.join(__dirname, '../views');
+app.use('/', express.static(publicPath));
 
 // Routes
 // =============================================================
@@ -33,7 +35,6 @@ require("./routes/apiRoutes.js")(app);
 // =============================================================
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
+    console.log("App listening on PORT " + PORT);
   });
 });

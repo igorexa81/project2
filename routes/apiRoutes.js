@@ -4,19 +4,27 @@ const cust = models.customer;
 const prod_pur = models.productpurchase;
 
 var exphbs = require("express-handlebars");
+const handlebars = require('handlebars');
 
 
+// Routes
+// =============================================================
+
+// Uncomment this if the above successfully runs
 
 module.exports = function(app) {
-  app.set('view engine', 'hbs');
+  // Create `ExpressHandlebars` instance with a default layout.
+
+ 
 // Set Handlebars as the default templating engine.
-app.engine("hbs", exphbs(
-  {
-    extname: 'hbs',
-    defaultView: 'main'
-  }
-)
-);
+ app.engine('handlebars', exphbs({
+  defaultView: 'main',
+extname: 'handlebars',
+layoutsDir: __dirname + '/../views/layouts/',
+partialsDir: __dirname + '/../views/partials/'
+}) );
+
+app.set('view engine', 'handlebars');
 // Render product into main page
 app.get("/", function (req, res) {
   prod.findAll({
@@ -25,7 +33,7 @@ app.get("/", function (req, res) {
   var prods_from_db_ =JSON.parse(JSON.stringify(prods_from_db));
 
   console.log("HERE is the output from the DB: \n "+JSON.stringify(prods_from_db)+'\n');
-    res.render("product_hbs", {
+    res.render("home_page", {
       products_json: prods_from_db_
     });
   });
