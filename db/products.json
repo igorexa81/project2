@@ -1,5 +1,0 @@
-[{"name":"Covergirl", "category":"Mascara", "inventory":22, "price":16, "prod_id":1, "department":"Cosmetics"},
- {"name":"Pantene", "category":"Shampoo", "inventory":3, "price":9, "prod_id":2, "department":"Hair Care"},
- {"name":"Pantene", "category":"Conditioner", "inventory":8, "price":11, "prod_id":3, "department":"Hair Care"},
- {"name":"Retinol A", "category":"Moisturiser", "inventory":38, "price":25, "prod_id":8000, "department":"Skin Care"},
- {"name":"Retna A", "category":"Moisturiser", "inventory":38, "price":25, "prod_id":9000, "department":"Skin Care"}]
