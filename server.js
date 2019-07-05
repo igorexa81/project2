@@ -27,6 +27,7 @@ app.use(express.static("public"));
 const publicPath = path.join(__dirname, '../views');
 app.use('/', express.static(publicPath));
 
+
 // Routes
 // =============================================================
 require("./routes/apiRoutes.js")(app);
