@@ -1,32 +1,35 @@
-var db = require("../models");
+// *********************************************************************************
+// html-routes.js - this file offers a set of routes for sending users to the various html pages
+// *********************************************************************************
 
-module.exports = function (app) {
-  // Load index page
-  app.get("/", function (req, res) {
-    db.prod.findAll({}).then(function (prods_from_db) {
-    var prods_from_db_ =JSON.parse(JSON.stringify(prods_from_db));
-    var prods_from_db_ =JSON.parse(JSON.stringify(prods_from_db));
-    res.render("product",{
-      products: prods_from_db_
-    });
-    });
+// Dependencies
+// =============================================================
+var path = require("path");
+
+// Routes
+// =============================================================
+module.exports = function(app) {
+
+  // Each of the below routes just handles the HTML page that the user gets sent to.
+
+  // index route loads view.html
+  app.get("/buy", function(req, res) {
+    res.render(__dirname + "buyPage.html", { name: Blah });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/products/:id", function (req, res) {
-    db.prod.findOne({
-      where: {
-        prod_id: req.params.id
-      }
-    }).then(function (product_from_db) {
-        var prods_from_db_ =JSON.parse(JSON.stringify(prods_from_db));
-      res.render("product", {
-        products: prods_from_db_
-      });
-    });
+  // cms route loads cms.html
+  app.get("/cms", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/cms.html"));
   });
-  // Render 404 page for any unmatched routes
-  app.get("*", function (req, res) {
-    res.render("404");
+
+  // blog route loads blog.html
+  app.get("/blog", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/blog.html"));
   });
+
+  // authors route loads author-manager.html
+  app.get("/authors", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/author-manager.html"));
+  });
+
 };

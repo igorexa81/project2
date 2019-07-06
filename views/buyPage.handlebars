@@ -1,0 +1,37 @@
+
+
+
+ <br>
+  <div class="row">
+    <div class="medium-6 columns">
+      <img class="thumbnail" src="https://placehold.it/650x350">
+      
+    </div>
+    <div class="medium-6 large-5 columns">
+      <h3>{{name}}</h3>
+
+      <form action="/purchase/{{this.id}}" method="POST">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="middle-label" class="middle">Inventory</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="{{this.inventory}}" readonly/>
+        </div>
+        <div class="small-3 columns">
+          <label for="middle-label" class="middle">Quantity</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" name="purchase" placeholder="Quantity"/>
+        </div>
+      </div>
+      <button type="submit" class="button large expanded">Buy Now</button>
+      </form>
+     
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+

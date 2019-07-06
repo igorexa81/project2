@@ -38,14 +38,15 @@ module.exports = function (app) {
     });
   });
 
-  // // Get all products
-  // app.get("/api/all", function (req, res) {
-  //   prod.findAll({
-  //     raw: true
-  //   }).then(function (results) {
-  //     res.json(results);
-  //   });
-  // });
+  app.get("/item/:id", function (req, res) {
+    prod.findByPk(req.params.id).then(currentProduct => {
+      res.render("buyPage", {
+        name: currentProduct.name,
+        id: req.params.id,
+        inventory: currentProduct.inventory
+      });
+    })
+  });
 
   app.post("/search", async function (req, res) {
 
@@ -85,20 +86,25 @@ module.exports = function (app) {
 
   });
 
-  app.post("/api/purchase/:id/:quantity", function (req, res) {
+  app.post("/purchase/:id", function (req, res) {
     var quantity = 0;
     prod.findByPk(req.params.id).then(currentProduct => {
       quantity = currentProduct.inventory;
-    })
-    var condition = "prod_id = " + req.params.id;
+     prod.update(
+        { inventory: quantity - req.body.purchase },
+        { where: { prod_id: req.params.id }} 
+        ).then(
+          prod.findAll({}).then(function (allProducts) {
 
-    console.log("condition", condition);
-
-    prod.update({
-      inventory: quantity - req.param.quantity
-    }, condition, function () {
-      res.redirect("/");
-    });
+            console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
+            res.render("home_page", {
+              products: allProducts,
+              title: "All Products"
+            });
+          })
+                
+        );
+      })
   });
 
   // Get all products by category
