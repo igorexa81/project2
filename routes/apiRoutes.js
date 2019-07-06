@@ -3,10 +3,6 @@ const prod = models.product;
 const cust = models.customer;
 const prod_pur = models.productpurchase;
 
-var exphbs = require("express-handlebars");
-const handlebars = require('handlebars');
-
-
 // Routes
 // =============================================================
 
@@ -17,14 +13,6 @@ module.exports = function (app) {
 
 
   // Set Handlebars as the default templating engine.
-  app.engine('handlebars', exphbs({
-    defaultView: 'main',
-    extname: 'handlebars',
-    layoutsDir: __dirname + '/../views/layouts/',
-    partialsDir: __dirname + '/../views/partials/'
-  }));
-
-  app.set('view engine', 'handlebars');
 
   // Render product into main page
   app.get("/", function (req, res) {

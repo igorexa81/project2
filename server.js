@@ -6,7 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-const path = require('path');
+var path = require('path');
+var exphbs = require("express-handlebars");
 
 // Sets up the Express App
 // =============================================================
@@ -16,16 +17,28 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
+// configure handlebars view engine
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+// Static directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// app.engine('handlebars', exphbs({
+//   defaultView: 'main',
+//   extname: 'handlebars',
+//   layoutsDir: __dirname + '/../views/layouts/',
+//   partialsDir: __dirname + '/../views/partials/'
+// }));
+
+// app.set('view engine', 'handlebars');
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Static directory
-app.use(express.static("public"));
-const publicPath = path.join(__dirname, '../views');
-app.use('/', express.static(publicPath));
 
 
 // Routes
