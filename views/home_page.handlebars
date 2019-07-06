@@ -2,11 +2,11 @@
 
 {{> header}}
   <h2>{{title}}</h2>
-
+  <div class="container"></div>
   {{#each products}}
 
-  <div class="container">
-    <div class="product-card">
+  
+    <div class="product-card" style="display: inline-block;">
       <div class="product-card-thumbnail">
         <a href="#"><img src="https://placehold.it/180x180" /></a>
       </div>
@@ -14,9 +14,10 @@
       <span class="product-card-desc">Product Description: {{this.department}}</span>
       <span class="product-card-price">${{this.price}}</span><span class="product-card-sale">$12.99</span>
     </div>
-  </div>
+  
 
   {{/each}}
+  </div>
   
   <div class="container">
     <div class="row">
