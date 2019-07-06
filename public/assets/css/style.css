@@ -113,21 +113,9 @@
   box-shadow: none;
 }
 
-
-
-
-
-
-
- 
-  .container {
+.container {
       margin: 2em 10em 2em 10em;
   }
-
-
-
-
-
 
 /* product cards "top sellers"*/
 
@@ -136,6 +124,7 @@
     border: 1px solid #e6e6e6;
     padding: 1rem;
     margin-bottom: 1.5rem;
+    margin-left: 5em;
     display: inline-block;
   }
   
