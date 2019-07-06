@@ -31,7 +31,8 @@ module.exports = function (app) {
       res.render("buyPage", {
         name: currentProduct.name,
         id: req.params.id,
-        inventory: currentProduct.inventory
+        inventory: currentProduct.inventory,
+        price: currentProduct.price
       });
     })
   });
