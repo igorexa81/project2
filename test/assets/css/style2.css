@@ -1,0 +1,14 @@
+.mobile-nav-bar.title-bar {
+    background-color: #5e5563;
+    height: 50px;
+    margin-bottom: 3em;
+    font-family: 'Tangerine', cursive;
+    font-size: 2em;
+  }
+  
+  .mobile-nav-bar a {
+    color: #fefefe;
+  }
+
+  
+  
