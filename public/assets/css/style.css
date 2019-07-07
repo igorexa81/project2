@@ -4,7 +4,7 @@
   font-family: 'Tangerine', cursive;
   color: #c86de4;
   text-shadow: 3px 3px 5px #5e5563;
-  font-size: 8em;
+  font-size: 6em;
 }
 .hero-search-filter {
   background: url("https://images.unsplash.com/photo-1511923199659-1c16881689de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=687&q=80") center center no-repeat;
@@ -116,8 +116,7 @@
 #allProducts {
   font-family: 'Courgette', cursive;
   margin-top: 1em;
-  margin-left: 5em;
-  margin-bottom: .5em;
+  margin-bottom: 1em;
 }
 
 
@@ -263,7 +262,6 @@ button.edit {
     font-family: 'Tangerine', cursive;
     color: #af4ecc;
     text-shadow: 3px 3px 5px #5e5563;
-    font-size: 5em;
     text-align: center;
     margin-top: 1em;
     line-height: 75%;
@@ -272,7 +270,6 @@ button.edit {
   #allProducts {
     font-family: 'Courgette', cursive;
     margin-top: 1em;
-    margin-left: 2.3em;
   }
 
   .product-card {
@@ -281,7 +278,7 @@ button.edit {
     padding: 1rem;
     margin-bottom: 1.5rem;
     display: inline-block;
-    margin-left: 13%;
+    
   }
 
   #reviewTitle {
@@ -293,11 +290,8 @@ button.edit {
   #title.form-control {
     height: 50px;
     margin-top: 0%;
-  }
-  
+  }  
 }
-
-/* Footer*/
   
 
 /*buy page */
