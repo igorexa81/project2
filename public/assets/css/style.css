@@ -3,8 +3,8 @@
 #title {
   font-family: 'Tangerine', cursive;
   color: #c86de4;
-  text-shadow: 2px 2px 5px #5e5563;
-  font-size: 5em;
+  text-shadow: 3px 3px 5px #5e5563;
+  font-size: 6em;
 }
 .hero-search-filter {
   background: url("https://images.unsplash.com/photo-1511923199659-1c16881689de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=687&q=80") center center no-repeat;
@@ -113,8 +113,17 @@
   box-shadow: none;
 }
 
-.container {
-      margin: 2em 10em 2em 10em;
+#allProducts {
+  font-family: 'Courgette', cursive;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+
+  .btn.btn-info.btn-lg {
+    position: absolute;
+    top: 8px;
+    right: 16px;
   }
 
 /* product cards "top sellers"*/
@@ -124,7 +133,6 @@
     border: 1px solid #e6e6e6;
     padding: 1rem;
     margin-bottom: 1.5rem;
-    margin-left: 5em;
     display: inline-block;
   }
   
@@ -206,12 +214,26 @@
 
 /********************************************************/
 
+#reviewTitle {
+  margin-top: 2em;
+  font-family: 'Courgette', cursive;
+}
+
+.col-md-5.offset-md-3 {
+  margin: 0px 0px 15px 0px;
+  
+}
+
+#title.form-control {
+  height: 50px;
+}
 button.submit {
+  margin-top: 10px;
   float: right;
 }
 
 form#cms {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 #cms textarea {
@@ -236,13 +258,41 @@ button.edit {
   /* max width 320PX */
 
 @media only screen and (min-width: 320px) {
-}
+  #title {
+    font-family: 'Tangerine', cursive;
+    color: #af4ecc;
+    text-shadow: 3px 3px 5px #5e5563;
+    text-align: center;
+    margin-top: 1em;
+    line-height: 75%;
+  }
 
-/* Footer*/
-  
-.footer {
-  background-color: #5e5563;
+  #allProducts {
+    font-family: 'Courgette', cursive;
+    margin-top: 1em;
+  }
+
+  .product-card {
+    background-color: #fefefe;
+    border: 1px solid #e6e6e6;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    
+  }
+
+  #reviewTitle {
+    margin-top: 2em;
+    font-family: 'Courgette', cursive;
+    text-align: center;
+  }
+
+  #title.form-control {
+    height: 50px;
+    margin-top: 0%;
+  }  
 }
+  
 
 /*buy page */
 
