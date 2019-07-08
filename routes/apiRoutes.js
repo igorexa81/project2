@@ -27,12 +27,13 @@ module.exports = function (app) {
   });
 
   app.get("/item/:id", function (req, res) {
-    prod.findByPk(req.params.id).then(currentProduct => {
+    prod.findByPk(req.params.id).then(product => {
       res.render("buyPage", {
-        name: currentProduct.name,
-        id: req.params.id,
-        inventory: currentProduct.inventory,
-        price: currentProduct.price
+        product:product,
+        // name: currentProduct.name,
+        // id: req.params.id,
+        // inventory: currentProduct.inventory,
+        // price: currentProduct.price
       });
     })
   });
@@ -78,9 +79,9 @@ module.exports = function (app) {
   app.post("/purchase/:id", function (req, res) {
     var quantity = 0;
     prod.findByPk(req.params.id).then(currentProduct => {
-      quantity = currentProduct.inventory;
+      quantityAvailable = currentProduct.inventory;
      prod.update(
-        { inventory: quantity - req.body.purchase },
+        { inventory: quantityAvailable - req.body.quantity },
         { where: { prod_id: req.params.id }} 
         ).then(
           prod.findAll({}).then(function (allProducts) {
@@ -98,7 +99,7 @@ module.exports = function (app) {
 
   // Get all products by category
   app.get("/api/:category", function (req, res) {
-    if (req.params.book) {
+    if (req.params.category) {
       prod.findAll({
         where: {
           category: req.params.category
