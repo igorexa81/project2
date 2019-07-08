@@ -12,6 +12,7 @@
 </div>
 
 
+
 <body>
 <br>
 <div class="row">
@@ -24,6 +25,25 @@
 
     <div class="small-3 columns">
           <label for="middle-label" class="middle" style="font-size: 1.5em">Price: ${{this.price}}</label>
+
+ <br>
+  <div class="row">
+    <div class="medium-6 columns">
+      <img class="thumbnail"><img style="width:180px; height:180px;" src="/assets/images/product/{{this.product.prod_id}}.jpg">
+      
+    </div>
+    <div class="medium-6 large-5 columns">
+      <h3>{{this.product.name}}</h3>
+      
+
+      <form action="/purchase/{{this.product.prod_id}}" method="POST">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="middle-label" class="middle">Inventory</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="{{this.product.inventory}}" readonly/>
+
         </div>
 
 
@@ -34,15 +54,24 @@
           <label for="middle-label" class="middle" style="padding-right: 15px; font-size: 1.2em">Inventory</label>
         </div>
         <div class="small-9 columns">
+
           <input type="text" placeholder="{{this.inventory}}" readonly />
+
+          <input type="text" name="quantity" placeholder="Quantity"/>
+
         </div>
         <div class="small-3 columns">
           <label for="middle-label" class="middle" style="padding: 0px 15px 0px 15px; font-size: 1.2em">Quantity</label>
         </div>
         <div class="small-9 columns">
+
           <input type="text" name="purchase" placeholder="Quantity" />
+
+          <input type="text" placeholder="{{this.product.price}}" readonly/>
+
         </div>
       </div>
+
     </form>
 
     <formB>
@@ -86,6 +115,25 @@
 
 
       
+=======
+      <button type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
+      </form>
+     
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
+
+
+    function submitForm() {
+      // TODO use Jquery  to make sure quantity < this.product.inventory
+       // either display alert if not enough quatity OR submit the form via javascript
+       alert("we have this available" + {{this.product.inventory}})
+       
+    }
+
+  </script>
+
 
 
     </style>
