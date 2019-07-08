@@ -16,7 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   });
   
   product.sync().then(() => {
-      product.create({
+  sequelize.sync({
+    force:false,
+  }).then(() => {
+
+    product.create({
       name: 'Covergirl',
       category: 'Mascara',
       inventory: 22,
@@ -56,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       prod_id: 5,
       department: "Skin Care"
     });
+    })
   });
 
   return product;
