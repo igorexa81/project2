@@ -132,7 +132,9 @@ module.exports = function (app) {
       });
     } //end if
   });
-  //CRUD
+
+
+  //CRUD===================================================================================================
   // GET route for getting all of the posts
 
   app.get("/api/posts/", function (req, res) {

@@ -1,2 +1,5 @@
 DROP DATABASE IF EXISTS product_db;
 CREATE DATABASE product_db;
+
+DROP DATABASE IF EXISTS reviews_db;
+CREATE DATABASE reviews_db;
