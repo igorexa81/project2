@@ -22,7 +22,7 @@
           <label for="middle-label" class="middle">Quantity</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" name="quantity" placeholder="Quantity"/>
+          <input type="text" name="quantity" placeholder="Quantity" required/>
         </div>
         <div class="small-3 columns">
           <label for="middle-label" class="middle">Price</label>
@@ -33,7 +33,7 @@
 
 
       </div>
-      <button type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
+      <button  type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
       </form>
      
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -41,60 +41,31 @@
   <script>
     $(document).foundation();
 
-
-    function submitForm() {
+      function submitForm() {
+      var quantityEl = ('input[name="quantity"]');
+      if(quantity){
+      var quantityIsAvailable = {{this.product.inventory}} >= quantity;
+      if(quantityIsAvailable){
       // TODO use Jquery  to make sure quantity < this.product.inventory
        // either display alert if not enough quatity OR submit the form via javascript
-       alert("we have this available" + {{this.product.inventory}})
+       alert("we have this available" + {{this.product.inventory}});
+       alert('Thank you for shopping with us, and your total is' + ({{this.product.price}} * quantity));
+      }
+      else {
+        alert('Not enough Quantity.')
+      }
+      }
        
     }
 
-  </script>
 
 
-<style>
-
-      #productName {
-        font-family: 'Courgette', cursive;
-        font-size: 3em;
-      }
-
-      .row {
-        margin-left: 7em;
-        margin-top: 3em;
-      }
-      .medium-6.large-5.columns {
-        margin-left: 5em;
-      }
-
-      .mobile-nav-bar.title-bar {
-        background-color: #9682a1;
-        font-family: 'Tangerine', cursive;
-        font-size: 2em;
-      }
-
-      form {
-        margin-right: 10em;
-      }
-
-      .label.middle {
-        font-size: 3em;
-      }
 
 
-      
-=======
-      <button type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
-      </form>
-     
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script>
+   
+  </script> 
+
+
+
+
     
-
-  </script>
-
-
-
-    </style>
-

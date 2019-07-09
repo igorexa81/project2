@@ -77,7 +77,7 @@ module.exports = function (app) {
   });
 
   app.post("/purchase/:id", function (req, res) {
-    var quantity = 0;
+    var quantityAvailable = 0;
     prod.findByPk(req.params.id).then(currentProduct => {
       quantityAvailable = currentProduct.inventory;
      prod.update(
