@@ -9,18 +9,14 @@
   },
   "test": {
     "username": "root",
-    "password": "13Eltonjohn!",
+    "password": "13EltJAWSDB_URLonjohn!",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": "13Eltonjohn!",
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "use_env_var":"JAWSDB_URL",
+    "dialect": "mysql"
   }
 }

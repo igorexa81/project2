@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
   sequelize.sync({
     force:false,
   }).then(() => {
-
+    //find all
+    product.findAll({}).then(function(response){
+      if(response.length === 0){
     product.create({
       name: 'Covergirl',
       category: 'Mascara',
@@ -60,6 +62,10 @@ module.exports = (sequelize, DataTypes) => {
       prod_id: 5,
       department: "Skin Care"
     });
+  }
+    }).catch(function(err){
+  console.log('Error occured while checking for products', err);
+  });
     })
   });
 
