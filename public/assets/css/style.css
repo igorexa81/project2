@@ -114,8 +114,18 @@
   box-shadow: none;
 }
 
+#allProd {
+  margin: 2em 0em 1em 2em;
+}
+
 .container {
-      margin: 2em 10em 2em 10em;
+      margin: 2em 5em 2em 5em;
+  }
+
+#fb-btn {
+  position: absolute;
+  top: 8px;
+  right: 16px;
   }
 
 /* product cards "top sellers"*/

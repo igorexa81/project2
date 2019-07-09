@@ -23,10 +23,64 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/2fde53fcdc.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Mali&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/public/assets/images/faviconlips.png">
   </head>
 <body>
   
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '475342529895950',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+      
+   
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+}); 
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   function statusChangeCallback(response) {
+      if(response.status === 'connected') {
+        console.log('connected');
+      } else {
+        console.log('not connected');
+      }
+   }
+
+   
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+</script>
+
+
+<fb:login-button 
+  id="fb-btn"
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+
+
   {{{body}}}
+
+
+
 </body>
 
 </html>
