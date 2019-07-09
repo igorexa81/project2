@@ -49,27 +49,24 @@
       <button  type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
       </form>
      
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+ 
   <script>
     $(document).foundation();
 
       function submitForm() {
-      var quantityEl = ('input[name="quantity"]');
-      if(quantity){
-      var quantityIsAvailable = {{this.product.inventory}} >= quantity;
-      if(quantityIsAvailable){
+      var quantity = ('input[name="quantity"]');
+      
+       var quantityIsAvailable = {{this.product.inventory}} >= quantity;
+      
       // TODO use Jquery  to make sure quantity < this.product.inventory
        // either display alert if not enough quatity OR submit the form via javascript
        alert("we have this available" + {{this.product.inventory}});
-       alert('Thank you for shopping with us, and your total is' + ({{this.product.price}} * quantity));
+       {{!-- alert('Thank you for shopping with us, and your total is' + ({{this.product.price}} * quantity)); --}}
       }
-      else {
-        alert('Not enough Quantity.')
-      }
-      }
+     
+    
        
-    }
+    
 
 
 
