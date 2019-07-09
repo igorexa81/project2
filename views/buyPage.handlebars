@@ -1,46 +1,71 @@
 
 
-
  <br>
   <div class="row">
     <div class="medium-6 columns">
-      <img class="thumbnail" src="https://placehold.it/650x350">
+      <img class="thumbnail"><img style="width:180px; height:180px;" src="/assets/images/product/{{this.product.prod_id}}.jpg">
       
     </div>
     <div class="medium-6 large-5 columns">
-      <h3>{{name}}</h3>
+      <h3>{{this.product.name}}</h3>
       
 
-      <form action="/purchase/{{this.id}}" method="POST">
+      <form action="/purchase/{{this.product.prod_id}}" method="POST">
       <div class="row">
         <div class="small-3 columns">
           <label for="middle-label" class="middle">Inventory</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" placeholder="{{this.inventory}}" readonly/>
+          <input type="text" placeholder="{{this.product.inventory}}" readonly/>
         </div>
         <div class="small-3 columns">
           <label for="middle-label" class="middle">Quantity</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" name="purchase" placeholder="Quantity"/>
+          <input type="text" name="quantity" placeholder="Quantity" required/>
         </div>
         <div class="small-3 columns">
           <label for="middle-label" class="middle">Price</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" placeholder="{{this.price}}" readonly/>
+          <input type="text" placeholder="{{this.product.price}}" readonly/>
         </div>
 
 
       </div>
-      <button type="submit" class="button large expanded">Buy Now</button>
+      <button  type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
       </form>
      
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
   <script>
     $(document).foundation();
-  </script>
+
+      function submitForm() {
+      var quantityEl = ('input[name="quantity"]');
+      if(quantity){
+      var quantityIsAvailable = {{this.product.inventory}} >= quantity;
+      if(quantityIsAvailable){
+      // TODO use Jquery  to make sure quantity < this.product.inventory
+       // either display alert if not enough quatity OR submit the form via javascript
+       alert("we have this available" + {{this.product.inventory}});
+       alert('Thank you for shopping with us, and your total is' + ({{this.product.price}} * quantity));
+      }
+      else {
+        alert('Not enough Quantity.')
+      }
+      }
+       
+    }
 
 
+
+
+
+   
+  </script> 
+
+
+
+
+    
