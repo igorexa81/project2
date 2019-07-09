@@ -29,7 +29,7 @@ module.exports = function (app) {
   app.get("/item/:id", function (req, res) {
     prod.findByPk(req.params.id).then(product => {
       res.render("buyPage", {
-        product:product,
+        product: product,
         // name: currentProduct.name,
         // id: req.params.id,
         // inventory: currentProduct.inventory,
@@ -44,20 +44,20 @@ module.exports = function (app) {
       let searchedProducts = await prod.findAll({
         where: {
           [models.Sequelize.Op.or]: [{
-            name: {
-              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+              name: {
+                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+              }
+            },
+            {
+              department: {
+                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+              }
+            },
+            {
+              category: {
+                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+              }
             }
-          },
-          {
-            department: {
-              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
-            }
-          },
-          {
-            category: {
-              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
-            }
-          }
           ]
 
         },
@@ -81,10 +81,13 @@ module.exports = function (app) {
     prod.findByPk(req.params.id).then(currentProduct => {
 
       quantity = currentProduct.inventory;
-      prod.update(
-        { inventory: quantity - req.body.purchase },
-        { where: { prod_id: req.params.id } }
-      ).then(
+      prod.update({
+        inventory: quantity - req.body.purchase
+      }, {
+        where: {
+          prod_id: req.params.id
+        }
+      }).then(
         prod.findAll({}).then(function (allProducts) {
 
           console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
@@ -97,23 +100,24 @@ module.exports = function (app) {
       );
     })
 
-      quantityAvailable = currentProduct.inventory;
-     prod.update(
-        { inventory: quantityAvailable - req.body.quantity },
-        { where: { prod_id: req.params.id }} 
-        ).then(
-          prod.findAll({}).then(function (allProducts) {
+    quantityAvailable = currentProduct.inventory;
+    prod.update({
+      inventory: quantityAvailable - req.body.quantity
+    }, {
+      where: {
+        prod_id: req.params.id
+      }
+    }).then(
+      prod.findAll({}).then(function (allProducts) {
 
-            console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
-            res.render("home_page", {
-              products: allProducts,
-              title: "All Products"
-            });
-          })
-                
-        );
+        console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
+        res.render("home_page", {
+          products: allProducts,
+          title: "All Products"
+        });
       })
 
+    );
   });
 
   // Get all products by category
@@ -127,11 +131,11 @@ module.exports = function (app) {
         res.json(results);
       });
     } //end if
-  })
+  });
   //CRUD
   // GET route for getting all of the posts
-  module.exports = function(crud) {
-  crud.get("/api/posts/", function (req, res) {
+
+  app.get("/api/posts/", function (req, res) {
     db.Post.findAll({})
       .then(function (dbPost) {
         res.json(dbPost);
@@ -139,58 +143,57 @@ module.exports = function (app) {
   });
 
   // Get route for returning posts of a specific category
-  crud.get("/api/posts/category/:category", function (req, res) {
+  app.get("/api/posts/category/:category", function (req, res) {
     db.Post.findAll({
-      where: {
-        category: req.params.category
-      }
-    })
+        where: {
+          category: req.params.category
+        }
+      })
       .then(function (dbPost) {
         res.json(dbPost);
       });
   });
 
   // Get route for retrieving a single post
-  crud.get("/api/posts/:id", function (req, res) {
+  app.get("/api/posts/:id", function (req, res) {
     db.Post.findOne({
-      where: {
-        id: req.params.id
-      }
-    })
+        where: {
+          id: req.params.id
+        }
+      })
       .then(function (dbPost) {
         res.json(dbPost);
       });
   });
 
   // POST route for saving a new post
-  crud.post("/api/posts", function (req, res) {
+  app.post("/api/posts", function (req, res) {
     console.log(req.body);
     db.Post.create({
-      title: req.body.title,
-      body: req.body.body,
-      category: req.body.category
-    })
+        title: req.body.title,
+        body: req.body.body,
+        category: req.body.category
+      })
       .then(function (dbPost) {
         res.json(dbPost);
       });
   });
 
   // DELETE route for deleting posts
-  crud.delete("/api/posts/:id", function (req, res) {
+  app.delete("/api/posts/:id", function (req, res) {
     db.Post.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+        where: {
+          id: req.params.id
+        }
+      })
       .then(function (dbPost) {
         res.json(dbPost);
       });
   });
 
   // PUT route for updating posts
-  crud.put("/api/posts", function (req, res) {
-    db.Post.update(req.body,
-      {
+  app.put("/api/posts", function (req, res) {
+    db.Post.update(req.body, {
         where: {
           id: req.body.id
         }
@@ -199,5 +202,5 @@ module.exports = function (app) {
         res.json(dbPost);
       });
   });
+
 };
-}; 
