@@ -43,22 +43,22 @@ module.exports = function (app) {
       let searchedProducts = await prod.findAll({
         where: {
           [models.Sequelize.Op.or]: [{
-              name: {
-                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
-              }
-            },
-            {
-              department: {
-                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
-              }
-            },
-            {
-              category: {
-                [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
-              }
+            name: {
+              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
             }
+          },
+          {
+            department: {
+              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+            }
+          },
+          {
+            category: {
+              [models.Sequelize.Op.like]: `%${req.body.searchTerms}%`
+            }
+          }
           ]
-  
+
         },
       });
       res.render("home_page", {
@@ -71,7 +71,7 @@ module.exports = function (app) {
         title: "Error During Search"
       });
     }
-    
+
 
   });
 
@@ -79,21 +79,21 @@ module.exports = function (app) {
     var quantity = 0;
     prod.findByPk(req.params.id).then(currentProduct => {
       quantity = currentProduct.inventory;
-     prod.update(
+      prod.update(
         { inventory: quantity - req.body.purchase },
-        { where: { prod_id: req.params.id }} 
-        ).then(
-          prod.findAll({}).then(function (allProducts) {
+        { where: { prod_id: req.params.id } }
+      ).then(
+        prod.findAll({}).then(function (allProducts) {
 
-            console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
-            res.render("home_page", {
-              products: allProducts,
-              title: "All Products"
-            });
-          })
-                
-        );
-      })
+          console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
+          res.render("home_page", {
+            products: allProducts,
+            title: "All Products"
+          });
+        })
+
+      );
+    })
   });
 
   // Get all products by category
@@ -108,4 +108,76 @@ module.exports = function (app) {
       });
     } //end if
   })
+  //CRUD
+  // GET route for getting all of the posts
+  module.exports = function(crud) {
+  crud.get("/api/posts/", function (req, res) {
+    db.Post.findAll({})
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // Get route for returning posts of a specific category
+  crud.get("/api/posts/category/:category", function (req, res) {
+    db.Post.findAll({
+      where: {
+        category: req.params.category
+      }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // Get route for retrieving a single post
+  crud.get("/api/posts/:id", function (req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // POST route for saving a new post
+  crud.post("/api/posts", function (req, res) {
+    console.log(req.body);
+    db.Post.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // DELETE route for deleting posts
+  crud.delete("/api/posts/:id", function (req, res) {
+    db.Post.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // PUT route for updating posts
+  crud.put("/api/posts", function (req, res) {
+    db.Post.update(req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
 };
+}; 
