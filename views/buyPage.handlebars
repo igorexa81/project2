@@ -1,30 +1,4 @@
-<div class="mobile-nav-bar title-bar">
-  <div class="title-bar-left">
-    <button class="menu-icon" type="button"></button>
-  </div>
-  <div class="title-bar-center">
-    <span class="title-bar-text">Beauty by Bootcamp</span>
-  </div>
-  <div class="title-bar-right">
-    <span class="title-bar-text">Home</span>
-    <span class="title-bar-text"><a href="./home_page.handlebars"><i class="fa fa-home title-bar-logo"></i></a></span>
-  </div>
-</div>
 
-
-
-<body>
-<br>
-<div class="row">
-  <div class="medium-6 columns">
-    <img class="thumbnail" src="https://placehold.it/300x300">
-
-  </div>
-  <div class="medium-6 large-5 columns">
-    <h3 id="productName">{{name}}</h3>
-
-    <div class="small-3 columns">
-          <label for="middle-label" class="middle" style="font-size: 1.5em">Price: ${{this.price}}</label>
 
  <br>
   <div class="row">
@@ -43,48 +17,42 @@
         </div>
         <div class="small-9 columns">
           <input type="text" placeholder="{{this.product.inventory}}" readonly/>
-
-        </div>
-
-
-    <form action="/purchase/{{this.id}}" method="POST">
-      <div class="row">
-       <div class="small-3 columns">
-          
-          <label for="middle-label" class="middle" style="padding-right: 15px; font-size: 1.2em">Inventory</label>
-        </div>
-        <div class="small-9 columns">
-
-          <input type="text" placeholder="{{this.inventory}}" readonly />
-
-          <input type="text" name="quantity" placeholder="Quantity"/>
-
         </div>
         <div class="small-3 columns">
-          <label for="middle-label" class="middle" style="padding: 0px 15px 0px 15px; font-size: 1.2em">Quantity</label>
+          <label for="middle-label" class="middle">Quantity</label>
         </div>
         <div class="small-9 columns">
-
-          <input type="text" name="purchase" placeholder="Quantity" />
-
-          <input type="text" placeholder="{{this.product.price}}" readonly/>
-
+          <input type="text" name="quantity" placeholder="Quantity"/>
         </div>
+        <div class="small-3 columns">
+          <label for="middle-label" class="middle">Price</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="{{this.product.price}}" readonly/>
+        </div>
+
+
       </div>
+      <button type="submit" class="button large expanded" onclick="submitForm()">Buy Now</button>
+      </form>
+     
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
 
-    </form>
 
-    <formB>
-      <button type="submit" class="button large expanded">Buy Now</button>
-    </formB>
+    function submitForm() {
+      // TODO use Jquery  to make sure quantity < this.product.inventory
+       // either display alert if not enough quatity OR submit the form via javascript
+       alert("we have this available" + {{this.product.inventory}})
+       
+    }
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-</body>
-    <style>
+  </script>
+
+
+<style>
 
       #productName {
         font-family: 'Courgette', cursive;
@@ -122,18 +90,11 @@
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
   <script>
-    $(document).foundation();
-
-
-    function submitForm() {
-      // TODO use Jquery  to make sure quantity < this.product.inventory
-       // either display alert if not enough quatity OR submit the form via javascript
-       alert("we have this available" + {{this.product.inventory}})
-       
-    }
+    
 
   </script>
 
 
 
     </style>
+

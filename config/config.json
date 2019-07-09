@@ -1,8 +1,6 @@
 {
   "development": {
     "username": "root",
-    "password": "13Eltonjohn!",
-=======
     "password": "Maxima03!",
     "database": "product_db",
     "host": "127.0.0.1",
