@@ -29,7 +29,7 @@ module.exports = function (app) {
   app.get("/item/:id", function (req, res) {
     prod.findByPk(req.params.id).then(product => {
       res.render("buyPage", {
-        product: product,
+        product:product,
         // name: currentProduct.name,
         // id: req.params.id,
         // inventory: currentProduct.inventory,
@@ -59,7 +59,7 @@ module.exports = function (app) {
               }
             }
           ]
-
+  
         },
       });
       res.render("home_page", {
@@ -72,52 +72,29 @@ module.exports = function (app) {
         title: "Error During Search"
       });
     }
-
+    
 
   });
 
   app.post("/purchase/:id", function (req, res) {
     var quantityAvailable = 0;
     prod.findByPk(req.params.id).then(currentProduct => {
+      quantityAvailable = currentProduct.inventory;
+     prod.update(
+        { inventory: quantityAvailable - req.body.quantity },
+        { where: { prod_id: req.params.id }} 
+        ).then(
+          prod.findAll({}).then(function (allProducts) {
 
-      quantity = currentProduct.inventory;
-      prod.update({
-        inventory: quantity - req.body.purchase
-      }, {
-        where: {
-          prod_id: req.params.id
-        }
-      }).then(
-        prod.findAll({}).then(function (allProducts) {
-
-          console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
-          res.render("home_page", {
-            products: allProducts,
-            title: "All Products"
-          });
-        })
-
-      );
-    })
-
-    quantityAvailable = currentProduct.inventory;
-    prod.update({
-      inventory: quantityAvailable - req.body.quantity
-    }, {
-      where: {
-        prod_id: req.params.id
-      }
-    }).then(
-      prod.findAll({}).then(function (allProducts) {
-
-        console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
-        res.render("home_page", {
-          products: allProducts,
-          title: "All Products"
-        });
+            console.log("HERE is the output from the DB: \n " + JSON.stringify(allProducts) + '\n');
+            res.render("home_page", {
+              products: allProducts,
+              title: "All Products"
+            });
+          })
+                
+        );
       })
-
-    );
   });
 
   // Get all products by category
@@ -130,12 +107,13 @@ module.exports = function (app) {
       }).then(function (results) {
         res.json(results);
       });
-    } //end if
-  });
+    } 
+  })
 
 
-  //CRUD===================================================================================================
-  // GET route for getting all of the posts
+
+
+
 
   app.get("/api/posts/", function (req, res) {
     db.Post.findAll({})
@@ -206,3 +184,13 @@ module.exports = function (app) {
   });
 
 };
+
+
+
+
+
+
+
+
+
+
