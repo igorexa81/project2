@@ -122,7 +122,7 @@
       margin: 2em 5em 2em 5em;
   }
 
-#fb-btn {
+.btn.btn-info.btn-lg {
   position: absolute;
   top: 8px;
   right: 16px;
